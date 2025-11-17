@@ -6,11 +6,14 @@ A modern chatbot application built with React, Vite, and the Gemini API, designe
 <summary><b>View More Screenshots</b></summary>
 <br>
 <p align="center">
-<img src="https://github.com/user-attachments/assets/ebb3062e-00c4-49e3-bd7e-6d98e11e4958" width="900" alt="Chatbot empty state">
+<img width="1899" height="917" alt="Screenshot 2025-11-17 105009" src="https://github.com/user-attachments/assets/b606c85a-838a-47e7-953f-536c26e3b275" />
+
 <br><br>
-<img src="https://github.com/user-attachments/assets/15d957b7-dcc5-4d3e-98ef-2cd38d7c3521" width="900" alt="Chatbot with a query and response">
+<img width="1895" height="917" alt="Screenshot 2025-11-17 105057" src="https://github.com/user-attachments/assets/b21ce818-0ac6-4c01-b595-5309380fef11" />
+
 <br><br>
-<img src="https://github.com/user-attachments/assets/a155d6c1-4ddb-4619-8c0e-e3dec8edb9b2" width="900" alt="Another chatbot conversation screenshot">
+<img width="1900" height="917" alt="Screenshot 2025-11-17 105108" src="https://github.com/user-attachments/assets/c6a94384-8e72-48df-a767-153fba3ace21" />
+
 </p>
 </details>
 
