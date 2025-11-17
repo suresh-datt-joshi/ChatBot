@@ -2,8 +2,6 @@
 
 A modern chatbot application built with React, Vite, and the Gemini API, designed to deliver engaging and intelligent conversational experiences.
 
-TalkMate Bot is an interactive AI-powered chat companion that provides instant, relevant, and context-aware responses. It's built to showcase the power of large language models in a simple, elegant web interface, making it easy for anyone to have a dynamic conversation.
-
 <details>
 <summary><b>View More Screenshots</b></summary>
 <br>
@@ -26,92 +24,103 @@ TalkMate Bot is an interactive AI-powered chat companion that provides instant, 
 
 ## ✨ Features
 
-This project is designed with a focus on a smooth development process and a rich user experience, including:
-
-* **Interactive Chat UI**: A clean, responsive, and intuitive interface that allows users to easily send messages and view bot responses.
-
-* **Gemini API Integration**: The core of the application, responsible for generating dynamic and relevant replies to user queries.
-
-* **Rich Text Support**: Utilizes `react-markdown` and `remark-gfm` to render bot messages with full Markdown support, including **bold text**, `code blocks`, lists, and tables.
-
-* **Fast Development Environment**: Powered by **Vite**, offering lightning-fast cold server start and hot module replacement (HMR) for a highly efficient development workflow.
-
-* **Code Quality**: Integrated with **ESLint** to enforce best practices and ensure consistent, bug-free code.
-
-* **Unique Message IDs**: Uses the `uuid` library to generate unique identifiers for each message, which is essential for managing chat state in React.
+* **Interactive Chat UI**: Clean, responsive interface with smooth animations
+* **Dual API Integration**: Gemini API (primary) with OpenAI fallback and automatic retry logic
+* **Rich Text Support**: Full Markdown rendering with GitHub Flavored Markdown
+* **Voice Input**: Browser-based speech recognition for voice commands
+* **Text-to-Speech**: Automatic speech synthesis for bot responses with mute toggle
+* **Multiple Chat Management**: Create, pin, rename, search, and delete conversations
+* **Smart Features**: Auto-generated titles, message previews, copy-to-clipboard
+* **Responsive Design**: Collapsible sidebar, mobile-friendly layout
 
 ---
 
 ## 🛠️ Technologies Used
 
-This project is built on a modern JavaScript stack:
-
-* **React**: A powerful JavaScript library for building user interfaces.
-
-* **Vite**: A next-generation frontend tooling that provides a fast development server and an optimized build process.
-
-* **React Icons**: A collection of popular icon libraries for React projects.
-
-* **React Markdown**: A component to render Markdown as React elements.
-
-* **Remark GFM**: A plugin for `react-markdown` to support GitHub-Flavored Markdown.
-
-* **UUID**: A library for generating universally unique identifiers.
-
-* **ESLint**: A linter to identify and report on patterns in JavaScript code.
+* **React** - UI library
+* **Vite** - Build tool and dev server
+* **React Icons** - Icon library
+* **React Markdown** - Markdown rendering
+* **Remark GFM** - GitHub Flavored Markdown support
+* **UUID** - Unique identifier generation
+* **ESLint** - Code linting
+* **Gemini API** - Primary AI integration
+* **OpenAI API** - Fallback AI integration
 
 ---
 
-## 📂 How to Run Locally
+## 📦 Installation & Setup
 
-To get this project running on your local machine, follow these steps:
+1. **Clone the repository:**
 
-1.  **Clone the repository:**
+   ```bash
+   git clone https://github.com/suresh-datt-joshi/ChatBot.git
+   cd ChatBot
+   ```
 
-    ```bash
-    git clone https://github.com/suresh-datt-joshi/ChatBot.git
-    cd ChatBot
+2. **Install dependencies:**
 
+   ```bash
+   npm install
+   ```
 
-    ```
+3. **Configure Environment Variables:**
 
-2.  **Install dependencies:**
-    This project uses `npm` for package management.
+   Create a `.env.local` file in the root directory:
 
-    ```bash
-    npm install
+   ```bash
+   VITE_GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
+   VITE_OPENAI_API_KEY="YOUR_OPENAI_API_KEY_HERE"  # Optional
+   ```
 
+   Get your API keys:
+   - **Gemini**: [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - **OpenAI**: [OpenAI Platform](https://platform.openai.com/api-keys)
 
-    ```
+4. **Start the development server:**
 
-3.  **Configure Environment Variables:**
-    The chatbot requires an API key for the Gemini API. Create a new file named `.env.local` in the root directory and add your key as shown below. This file is automatically ignored by Git for security.
+   ```bash
+   npm run dev
+   ```
 
-    ```bash
-    VITE_GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
-
-
-    ```
-
-4.  **Start the development server:**
-    Run the development script to start the application.
-
-    ```bash
-    npm run dev
-
-
-    ```
-
-    The application will open in your browser at `http://localhost:5173`.
+   The application will open at `http://localhost:5173`.
 
 ---
 
-## ✍️ Author
+## 🎮 Available Scripts
 
-* **Suresh Datt Joshi** - [suresh-datt-joshi](https://github.com/suresh-datt-joshi)
+* `npm run dev` - Start development server
+* `npm run build` - Build for production
+* `npm run preview` - Preview production build
+* `npm run lint` - Run ESLint
 
 ---
 
-## 📄 License
+## 💻 Usage
 
-This project is licensed under the MIT License. 
+* **New Chat**: Click "New Chat" button in the sidebar
+* **Send Message**: Type and press `Enter` (or `Shift+Enter` for new line)
+* **Voice Input**: Click microphone icon to record
+* **Manage Chats**: Use the three-dot menu (⋮) to pin, rename, share, or delete chats
+* **Search**: Use the search bar to find chats by title or content
+* **Mute/Unmute**: Click volume icon to toggle text-to-speech
+
+---
+
+## 🐛 Troubleshooting
+
+* **API Key Issues**: Ensure `.env.local` is in root directory and restart dev server
+* **Voice Recognition**: Use Chrome, Edge, or Safari and allow microphone permissions
+* **Build Errors**: Clear `node_modules` and reinstall dependencies
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👤 Author
+
+**Suresh Datt Joshi** - [suresh-datt-joshi](https://github.com/suresh-datt-joshi)

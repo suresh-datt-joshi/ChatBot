@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // Import new icons for the mute button
-import { FaPaperPlane, FaMicrophone, FaStopCircle, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import { FaPaperPlane, FaMicrophone, FaStopCircle, FaVolumeUp, FaVolumeMute, FaRobot, FaUser } from 'react-icons/fa';
 import './ChatWindow.css';
-import logo from './assets/logo.png';
+import logo from './assets/logo.jpg';
 
-const Message = ({ role, text }) => {
+const Message = ({ role, text, index }) => {
   const isBot = role === 'model';
   const handleCopy = () => navigator.clipboard.writeText(text);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation when message appears
+    const timer = setTimeout(() => setIsVisible(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className={`message ${isBot ? 'bot-message' : 'user-message'}`}>
-      <div className="message-content">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+    <div className={`message ${isBot ? 'bot-message' : 'user-message'} ${isVisible ? 'visible' : ''}`}>
+      {isBot && (
+        <div className="message-avatar bot-avatar">
+          <FaRobot />
+        </div>
+      )}
+      <div className="message-content-wrapper">
+        <div className="message-content">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
+        </div>
+        {isBot && text && (
+          <button onClick={handleCopy} className="copy-button">Copy</button>
+        )}
       </div>
-      {isBot && text && (
-        <button onClick={handleCopy} className="copy-button">Copy</button>
+      {!isBot && (
+        <div className="message-avatar user-avatar">
+          <FaUser />
+        </div>
       )}
     </div>
   );
@@ -49,9 +68,22 @@ function ChatWindow({
     <div className="chat-window">
       <div className="messages-container">
         {activeChat.messages.map((msg, index) => (
-          <Message key={index} role={msg.role} text={msg.parts[0].text} />
+          <Message key={index} role={msg.role} text={msg.parts[0].text} index={index} />
         ))}
-        {loading && <div className="message bot-message"><div className="loader"></div></div>}
+        {loading && (
+          <div className="message bot-message loading-message visible">
+            <div className="message-avatar bot-avatar">
+              <FaRobot />
+            </div>
+            <div className="message-content-wrapper">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
       <div className="query-container">

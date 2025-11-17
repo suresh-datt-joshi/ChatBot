@@ -127,6 +127,21 @@ function App() {
 
     const messagesForApi = updatedChats.find(chat => chat.id === activeChatId).messages;
 
+    // Get current date and time for context
+    const currentDate = new Date();
+    const dateString = currentDate.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    const timeString = currentDate.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    });
+    const systemContext = `Current date and time: ${dateString}, ${timeString}. Always use this information when answering questions about dates, times, or current events.`;
+
     // --- Primary API: Gemini with Exponential Backoff ---
     try {
       if (!geminiApiKey) {
@@ -140,8 +155,14 @@ function App() {
 
       while (attempt < maxRetries) {
         try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`;
-          const payload = { contents: messagesForApi };
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
+          // Add system instruction with current date/time context
+          const payload = { 
+            contents: messagesForApi,
+            systemInstruction: {
+              parts: [{ text: systemContext }]
+            }
+          };
 
           response = await fetch(url, {
             method: "POST",
@@ -207,10 +228,14 @@ function App() {
           content: msg.parts[0].text
         }));
 
+        // Add system message with current date/time at the beginning
         const url = 'https://api.openai.com/v1/chat/completions';
         const payload = {
           model: 'gpt-3.5-turbo',
-          messages: messagesForOpenAI,
+          messages: [
+            { role: 'system', content: systemContext },
+            ...messagesForOpenAI
+          ],
         };
 
         const response = await fetch(url, {
